@@ -1,0 +1,22 @@
+<phpunit
+    bootstrap="./tests/bootstrap.php"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    processIsolation="false"
+    stopOnError="false"
+    stopOnFailure="false"
+    stopOnIncomplete="false"
+    stopOnSkipped="false"
+    testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
+    verbose="false"
+>
+
+     <testsuites>
+        <testsuite name="ApiClient">
+            <directory>./tests/ApiClient/Tests</directory>
+        </testsuite>
+    </testsuites>
+
+</phpunit>

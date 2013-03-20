@@ -1,0 +1,14 @@
+{
+    "name": "apnmarketplace/apiclient",
+    "description": "Performs requests to the API and returns objects contained in the response",
+    "version": "1.0.0-dev",
+    "require": {
+        "php": ">=5.3.2",
+        "guzzle/guzzle": "3.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "ApnMarketplace\\ApiClient": "src"
+        }
+    }    
+}
