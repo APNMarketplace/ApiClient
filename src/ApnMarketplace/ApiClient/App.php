@@ -9,15 +9,17 @@ use ApnMarketplace\ApiClient\Client\ClientInterface;
 
 class App
 {
-    protected $host = 'https://local.api.apnmarketplace.co.nz';
+    protected $host;
     protected $client;
 
     /**
      * @param \ApnMarketplace\ApiClient\Client\ClientInterface $client
+     * @param string $host
      */
-    public function __construct(ClientInterface $client)
+    public function __construct(ClientInterface $client, $host = 'https://api.apnmarketplace.co.nz')
     {
         $this->client = $client;
+        $this->host = $host;
     }
 
     /**
