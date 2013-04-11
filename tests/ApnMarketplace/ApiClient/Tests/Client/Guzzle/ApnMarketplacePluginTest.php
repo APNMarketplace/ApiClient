@@ -21,20 +21,21 @@ class ApnMarketplacePluginTest extends \PHPUnit_Framework_TestCase
         $client = new Client('http://example.com');
         $session = $this->getMock('\ApnMarketplace\ApiClient\Client\Guzzle\Session');
         $session->expects($this->any())->method('get')->will($this->returnValue('TOKEN'));
-        $plugin = new ApnMarketplacePlugin('id', 'secret', $session);
+        $plugin = new ApnMarketplacePlugin('id', 'secret', 'datetime', $session);
         $request = $client->get('/');
         $request->getEventDispatcher()->addSubscriber($plugin);
         $request->send();
 
         $this->assertEquals('Basic aWQ6MDljNTA4OTYxOTZmZjlkODBmYzQ1NTlmMmU2NjZjZDlhNmFmZmU0ODdiNGFkOGIzYmUxOWViYzQ4ZDllNjUyOQ==', $request->getHeader('Authorization'));
         $this->assertEquals('TOKEN', $request->getHeader('x-api-user-session', true));
+        $this->assertEquals('datetime', $request->getHeader('accept-datetime', true));
         $this->assertEquals('header=x-api-user-session', $request->getParams()->get('cache.key_filter'));
     }
 
     public function testComplete()
     {
         $session = new Session();
-        $plugin = new ApnMarketplacePlugin('id', 'secret', $session);
+        $plugin = new ApnMarketplacePlugin('id', 'secret', 'datetime', $session);
         $request = RequestFactory::getInstance()->create('GET', 'http://example.com/');
         $request->getEventDispatcher()->addSubscriber($plugin);
 
