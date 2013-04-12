@@ -35,7 +35,7 @@ A client capable of making signed requests is required. A [Guzzle](https://githu
     use ApnMarketplace\ApiClient\Client\Guzzle\Session;
 
     $client = new Client();
-    $client->addSubscriber(new ApnMarketplacePlugin('client_id', 'client_secret', new Session()));
+    $client->addSubscriber(new ApnMarketplacePlugin('client_id', 'client_secret', 'Fri, 12 Apr 2013 09:40:29 +1200', new Session()));
 
     $api = new App($client);
 

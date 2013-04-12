@@ -10,6 +10,7 @@ class ApnMarketplacePlugin implements EventSubscriberInterface
     private $id;
     private $secret;
     private $cache;
+    private $acceptDatetime;
 
     /**
      *
@@ -17,10 +18,11 @@ class ApnMarketplacePlugin implements EventSubscriberInterface
      * @param string $secret Client secret
      * @param CacheInterface
      */
-    public function __construct($id, $secret, $session)
+    public function __construct($id, $secret, $acceptDatetime, $session)
     {
         $this->id = $id;
         $this->secret = $secret;
+        $this->acceptDatetime = $acceptDatetime;
         $this->cache = $session;
     }
 
@@ -63,5 +65,6 @@ class ApnMarketplacePlugin implements EventSubscriberInterface
         $request->setAuth($this->id, $hash, CURLAUTH_BASIC);
         $request->setHeader('x-api-user-session', $this->cache->get('user-token'));
         $request->getParams()->set('cache.key_filter', 'header=x-api-user-session');
+        $request->setHeader('accept-datetime', $this->acceptDatetime);
     }
 }
