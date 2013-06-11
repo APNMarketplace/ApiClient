@@ -14,7 +14,7 @@ interface ClientInterface
      *
      * @return \ApnMarketplace\ApiClient\HttpResponse
      */
-    public function get($uri = null, $headers = null, $options = array());
+    public function get($uri = null, $headers = null, array $options = array());
 
     /**
      * Make a POST request and return a HTTP Response
@@ -26,7 +26,7 @@ interface ClientInterface
      *
      * @return \ApnMarketplace\ApiClient\HttpResponse
      */
-    public function post($uri = null, $headers = null, $postBody = null, $options = array());
+    public function post($uri = null, $headers = null, $postBody = null, array $options = array());
 
     /**
      * Make a DELETE request and return a HTTP Response
@@ -38,5 +38,5 @@ interface ClientInterface
      *
      * @return \ApnMarketplace\ApiClient\HttpResponse
      */
-    public function delete($uri = null, $headers = null, $body = null, $options = array());
+    public function delete($uri = null, $headers = null, $body = null, array $options = array());
 }

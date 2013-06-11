@@ -12,7 +12,7 @@ class Client extends GuzzleClient implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function get($uri = null, $headers = null, $options = array())
+    public function get($uri = null, $headers = null, array $options = array())
     {
         try {
             $response = parent::get($uri, $headers, $options)->send();
@@ -28,7 +28,7 @@ class Client extends GuzzleClient implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function post($uri = null, $headers = null, $postBody = null, $options = array())
+    public function post($uri = null, $headers = null, $postBody = null, array $options = array())
     {
         try {
             $response = parent::post($uri, $headers, $postBody, $options)->send();
@@ -44,7 +44,7 @@ class Client extends GuzzleClient implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function delete($uri = null, $headers = null, $body = null, $options = array())
+    public function delete($uri = null, $headers = null, $body = null, array $options = array())
     {
         try {
             $response = parent::delete($uri, $headers, $body, $options)->send();
