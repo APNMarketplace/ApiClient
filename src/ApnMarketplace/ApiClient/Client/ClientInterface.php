@@ -14,7 +14,7 @@ interface ClientInterface
      *
      * @return \ApnMarketplace\ApiClient\HttpResponse
      */
-    public function get($uri = null, $headers = null, array $options = array());
+    public function get($uri = null, $headers = null, $options = array());
 
     /**
      * Make a POST request and return a HTTP Response

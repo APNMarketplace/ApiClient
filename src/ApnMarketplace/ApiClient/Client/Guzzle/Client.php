@@ -12,7 +12,7 @@ class Client extends GuzzleClient implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function get($uri = null, $headers = null, array $options = array())
+    public function get($uri = null, $headers = null, $options = array())
     {
         try {
             $response = parent::get($uri, $headers, $options)->send();
