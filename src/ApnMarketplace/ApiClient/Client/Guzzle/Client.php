@@ -12,10 +12,10 @@ class Client extends GuzzleClient implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function get($uri = null, $headers = null, $body = null)
+    public function get($uri = null, $headers = null, $options = array())
     {
         try {
-            $response = parent::get($uri, $headers, $body)->send();
+            $response = parent::get($uri, $headers, $options)->send();
         }
         catch (HttpException $e) {
             // Guzzle throws exceptions for 400/500 responses, we want to return the string instead
@@ -28,10 +28,10 @@ class Client extends GuzzleClient implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function post($uri = null, $headers = null, $postBody = null)
+    public function post($uri = null, $headers = null, $postBody = null, $options = array())
     {
         try {
-            $response = parent::post($uri, $headers, $postBody)->send();
+            $response = parent::post($uri, $headers, $postBody, $options)->send();
         }
         catch (HttpException $e) {
             // Guzzle throws exceptions for 400/500 responses, we want to return the string instead
@@ -44,10 +44,10 @@ class Client extends GuzzleClient implements ClientInterface
     /**
      * {@inheritdoc}
      */
-    public function delete($uri = null, $headers = null, $body = null)
+    public function delete($uri = null, $headers = null, $body = null, $options = array())
     {
         try {
-            $response = parent::delete($uri, $headers, $body)->send();
+            $response = parent::delete($uri, $headers, $body, $options)->send();
         }
         catch (HttpException $e) {
             // Guzzle throws exceptions for 400/500 responses, we want to return the string instead
