@@ -32,7 +32,7 @@ class ApnMarketplacePlugin implements EventSubscriberInterface
     static public function getSubscribedEvents()
     {
         return array(
-            'request.before_send' => array('onRequestBeforeSend'),
+            'client.create_request' => array('onClientCreateRequest'),
             'request.complete' => array('onComplete'),
         );
     }
@@ -57,7 +57,7 @@ class ApnMarketplacePlugin implements EventSubscriberInterface
      *
      * @param \Guzzle\Common\Event $event
      */
-    public function onRequestBeforeSend(Event $event)
+    public function onClientCreateRequest(Event $event)
     {
         $request = $event['request'];
 
