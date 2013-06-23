@@ -4,9 +4,23 @@ namespace ApnMarketplace\ApiClient\Tests\App;
 
 use ApnMarketplace\ApiClient\App;
 use ApnMarketplace\ApiClient\HttpResponse;
+use ApnMarketplace\ApiClient\StreamResponse;
 
 class AppTest extends \PHPUnit_Framework_TestCase
 {
+    public function testGetStream()
+    {
+        $stream = $this->getMock('\Guzzle\Stream\StreamInterface');
+        $stream->expects($this->any())->method('getMetaData')->will($this->returnValue(array('HTTP/1.1 200 OK', 'Content-Disposition: Attachment; filename="foo.txt";')));
+        $client = $this->getMock('\ApnMarketplace\ApiClient\Client\Guzzle\Client');
+        $client->expects($this->any())->method('getStream')->will($this->returnValue(new StreamResponse($stream)));
+        $app = new App($client);
+
+        $response = $app->getStream('url');
+        $this->assertInstanceOf('ApnMarketplace\ApiClient\StreamResponse', $response);
+        $this->assertEquals('foo.txt', $response->getFilename());
+    }
+
     public function testGet()
     {
         $response1 = <<<EOT

@@ -12,19 +12,18 @@ class ApnMarketplacePluginTest extends \PHPUnit_Framework_TestCase
     public function testSubscribesToEvents()
     {
         $events = ApnMarketplacePlugin::getSubscribedEvents();
-        $this->assertArrayHasKey('request.before_send', $events);
+        $this->assertArrayHasKey('client.create_request', $events);
         $this->assertArrayHasKey('request.complete', $events);
     }
 
-    public function testBeforeSend()
+    public function testCreateRequest()
     {
         $client = new Client('http://example.com');
         $session = $this->getMock('\ApnMarketplace\ApiClient\Client\Guzzle\Session');
         $session->expects($this->any())->method('get')->will($this->returnValue('TOKEN'));
         $plugin = new ApnMarketplacePlugin('id', 'secret', 'datetime', $session);
-        $request = $client->get('/');
-        $request->getEventDispatcher()->addSubscriber($plugin);
-        $request->send();
+        $client->addSubscriber($plugin);
+        $request = $client->createRequest('GET');
 
         $this->assertEquals('Basic aWQ6MDljNTA4OTYxOTZmZjlkODBmYzQ1NTlmMmU2NjZjZDlhNmFmZmU0ODdiNGFkOGIzYmUxOWViYzQ4ZDllNjUyOQ==', $request->getHeader('Authorization'));
         $this->assertEquals('TOKEN', $request->getHeader('x-api-user-session', true));
