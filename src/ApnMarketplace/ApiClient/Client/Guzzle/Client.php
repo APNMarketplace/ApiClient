@@ -6,9 +6,22 @@ use Guzzle\Http\Client as GuzzleClient;
 use ApnMarketplace\ApiClient\Client\ClientInterface;
 use Guzzle\Http\Exception\HttpException;
 use ApnMarketplace\ApiClient\HttpResponse;
+use Guzzle\Stream\PhpStreamRequestFactory;
+use ApnMarketplace\ApiClient\StreamResponse;
 
 class Client extends GuzzleClient implements ClientInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function getStream($uri = null, $headers = null, $options = array())
+    {
+        $request = parent::get($uri, $headers, $options);
+        $factory = new PhpStreamRequestFactory();
+
+        return new StreamResponse($factory->fromRequest($request));
+    }
+
     /**
      * {@inheritdoc}
      */

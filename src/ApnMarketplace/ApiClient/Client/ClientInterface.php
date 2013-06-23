@@ -5,11 +5,21 @@ namespace ApnMarketplace\ApiClient\Client;
 interface ClientInterface
 {
     /**
+     * Make a GET request and return a Stream
+     *
+     * @param string $uri
+     * @param array $headers Headers in the format: array(array($key, $value), array($key, $value))
+     * @param array $options Options to apply to the request
+     *
+     * @return \ApnMarketplace\ApiClient\StreamResponse
+     */
+    public function getStream($uri = null, $headers = null, $options = array());
+
+    /**
      * Make a GET request and return a HTTP Response
      *
      * @param string $uri
      * @param array $headers Headers in the format: array(array($key, $value), array($key, $value))
-     * @param string $body
      * @param array $options Options to apply to the request
      *
      * @return \ApnMarketplace\ApiClient\HttpResponse

@@ -46,6 +46,17 @@ class App
     }
 
     /**
+     * Make a get request for a streamed resource
+     *
+     * @param string $uri
+     * @return StreamResponse
+     */
+    public function getStream($uri)
+    {
+        return $this->client->getStream($uri);
+    }
+
+    /**
      * Make a GET request and return the resource
      *
      * @param string $resource A URL or period separated path to a resource
